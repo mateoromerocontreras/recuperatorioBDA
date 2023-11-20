@@ -50,8 +50,8 @@ public class Track {
     @JoinColumn(name = "genreid", insertable = false, updatable = false)
     private Genre genre;
 
-    @OneToOne(mappedBy = "track")
-    private InvoiceItem invoiceItem;
+    @OneToMany(mappedBy = "track")
+    private List<InvoiceItem> invoiceItem;
 
     @OneToMany(mappedBy = "track")
     private List<PlaylistTrack> playlistTracks;

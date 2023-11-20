@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 
 @Data
 @NoArgsConstructor
@@ -54,7 +56,7 @@ public class Customer {
     @Column(name = "supportrepid")
     private Long supportRep;
 
-    @OneToOne(mappedBy = "customer")
-    private Invoice invoice;
+    @OneToMany(mappedBy = "customer")
+    private List<Invoice> invoice;
 }
 

@@ -19,9 +19,7 @@ public class Invoice {
     @Column(name = "invoiceid")
     private long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "customerid")
-    private Customer customer;
+
 
     @Column(name = "invoicedate")
     private LocalDateTime invoiceDate;
@@ -43,4 +41,8 @@ public class Invoice {
 
     @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY)
     private List<InvoiceItem> invoiceItems;
+
+    @ManyToOne
+    @JoinColumn(name = "customerid")
+    private Customer customer;
 }

@@ -20,7 +20,7 @@ public class InvoiceItem {
     @JoinColumn(name = "invoiceid")
     private Invoice invoice;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "trackid")
     private Track track;
 

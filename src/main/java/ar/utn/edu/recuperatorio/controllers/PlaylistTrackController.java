@@ -58,4 +58,14 @@ public class PlaylistTrackController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+
+    @GetMapping("/playlist/{id}")
+    public ResponseEntity<List<PlaylistTrackDto>> getAllPlaylistTracksByPlaylist(@PathVariable Long id) {
+        try {
+            List<PlaylistTrackDto> playlistTracks = playlistTrackService.obtenerPorPlaylistId(id);
+            return ResponseEntity.ok(playlistTracks);
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
 }

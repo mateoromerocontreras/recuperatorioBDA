@@ -90,15 +90,18 @@ public class PlaylistTrackServiceImpl implements PlaylistTrackService{
                 .toList();
     }
 
-//    @Override
-//    public PlaylistTrack obtenerId(Long trackId, Long playlistId) {
-//        Optional<Track> optionalTrack = trackRepository.findById(trackId);
-//        Optional<Playlist> optionalPlaylist = playlistRepository.findById(playlistId);
-//
-//        if (optionalTrack.isEmpty() || optionalPlaylist.isEmpty()) {
-//            throw new NoSuchElementException("No existe esta id");
-//        }
-//
-//        return new PlaylistTrack(optionalTrack.get(), optionalPlaylist.get());
-//    }
+    @Override
+    public List<PlaylistTrackDto> obtenerPorPlaylistId(Long playlistId) {
+        List<PlaylistTrack> playlistTracks = playlistTrackRepository
+                .findPlaylistTracksByPlaylistId(playlistId);
+
+        if (playlistTracks.isEmpty()) {
+            throw new NoSuchElementException("No existe esta id");
+        }
+
+        return playlistTracks
+                .stream()
+                .map(playlistTrackDtoMapper)
+                .toList();
+    }
 }
